@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "학년별 경쟁률 표시",
+  "version": "1.0",
+  "description": "과목의 학년별 경쟁률을 표시합니다.",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["https://cn.hongik.ac.kr/stud/C/02000/02020.jsp/*", "https://cn.hongik.ac.kr/stud/*"],
+      "js": ["contentScript.js"],
+      "all_frames": true
+    }
+  ]
+}

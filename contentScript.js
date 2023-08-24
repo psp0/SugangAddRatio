@@ -1,7 +1,7 @@
-const 사전선택인원위치 = () => {
+const 제한인원위치 = () => {
   for (let idx = 0; idx < tHeadEle.length; idx++) {
     const element = tHeadEle[idx];
-    if (element.textContent.indexOf("사전선택인원") !== -1) {
+    if (element.textContent.indexOf("제한인원") !== -1) {
       return idx;
     }
   }
@@ -9,7 +9,7 @@ const 사전선택인원위치 = () => {
 const 테이블헤더추가 = (n) => {
   const th = document.createElement("th");
   th.innerHTML = "경쟁률<br>(4/3/2/1/추가)";
-  tHead[0].insertBefore(th, tHeadEle[n + 2]);
+  tHead[0].insertBefore(th, tHeadEle[n + 1]);
 };
 
 const 경쟁률계산후추가 = (n) => {
@@ -22,10 +22,10 @@ const 경쟁률계산후추가 = (n) => {
     const rowspan = tBodyBlock[n].getAttribute("rowspan");
     if (rowspan !== null) {
       info.rowSpan = tBodyBlock[n].getAttribute("rowspan");
-      tBody[idx].insertBefore(info, tBodyBlock[n + 2]);
+      tBody[idx].insertBefore(info, tBodyBlock[n + 1]);
       idx += Number(rowspan) - 1;
     } else {
-      tBody[idx].insertBefore(info, tBodyBlock[n + 2]);
+      tBody[idx].insertBefore(info, tBodyBlock[n + 1]);
     }
     return idx;
   };
@@ -51,11 +51,11 @@ const 경쟁률계산후추가 = (n) => {
   for (let idx = 0; idx < tBody.length; idx++) {
     const element = tBody[idx];
     const [seniorPick, juniorPick, sophomorePick, freshmanPick] = element
-      .querySelector(`td:nth-child(${n + 1})`)
+      .querySelector(`td:nth-child(${n})`)
       .textContent.split("/")
       .map(Number);
     const [seniorFull, juniorFull, sophomoreFull, freshmanFull, allFull] = element
-      .querySelector(`td:nth-child(${n + 2})`)
+      .querySelector(`td:nth-child(${n + 1})`)
       .textContent.split("/")
       .map(Number);
     const [seniorAble, juniorAble, sophomoreAble, freshmanAble, allAble] = [
@@ -90,7 +90,7 @@ let tHead = document.querySelectorAll(".table0.mato15 table thead tr");
 let tBody = document.querySelectorAll(".table0.mato15 table tbody tr");
 let tHeadEle = document.querySelectorAll(".table0.mato15 table thead tr th");
 if (tHead.length !== 0) {
-  let n = 사전선택인원위치();
+  let n = 제한인원위치();
   테이블헤더추가(n);
   경쟁률계산후추가(n);
 }

@@ -94,8 +94,10 @@ let tBody = document.querySelectorAll(".table0.mato15 table tbody tr");
 let tHeadEle = document.querySelectorAll(".table0.mato15 table thead tr th");
 if (tHead.length !== 0) {
   let [n, m] = 선택인원제한인원위치();
-  테이블헤더추가(m);
-  경쟁률계산후추가(n, m);
+  if (n !== undefined && m !== undefined) {
+    테이블헤더추가(m);
+    경쟁률계산후추가(n, m);
+  }
 }
 
 //색깔 추가
